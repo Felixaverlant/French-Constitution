@@ -1,0 +1,12 @@
+{
+  "name"         : "constitution",
+  "version"      : "1.0.0",
+  "description"  : "Constitution",
+  "main"         : "server.js",
+  "author"       : "Felix Averlant",
+  "dependencies" : {
+    "request"    : "latest",
+    "cheerio"    : "latest",
+    "coffee-script" : "latest"
+  }
+}

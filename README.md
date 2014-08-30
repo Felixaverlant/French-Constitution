@@ -53,3 +53,4 @@ Libs :
 - [ ] Do tests
 - [ ] Get complet name for law that modified by
 - [ ] Fork legifrance
+- [ ] Deal with article that doesn't exist anymore

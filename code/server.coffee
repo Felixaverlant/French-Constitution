@@ -1,9 +1,11 @@
 request = require('request')
 cheerio = require('cheerio')
-fs = require('fs')
+fs      = require('fs')
+path    = require('path')
 
 constitution_link = "http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000006071194"
 
+# Cleaning functions
 String::clean_strings = -> 
 	@.replace /(\r\n|\n|\r|\t)/gm,""
 String::trim = -> 
@@ -20,6 +22,8 @@ Array::not_empty = ->
   	return true
   else
   	return false
+
+
 
 request constitution_link, (err,res,data) ->
 	if !err && res.statusCode == 200
@@ -49,7 +53,9 @@ request constitution_link, (err,res,data) ->
 
 			$(@).find(".titreArt a").remove()
 			article.title 		  	= $(@).find(".titreArt").text().clean()
-			article.index		 	= $(@).find(".titreArt").text().replace(/^\D+/g, '').clean()
+
+			if $(@).find(".titreArt").text().replace(/^\D+/g, '').clean()
+				article.index		 	= $(@).find(".titreArt").text().replace(/^\D+/g, '').clean()
 
 			modified_by 				= []
 			created_by 					= []
@@ -66,8 +72,8 @@ request constitution_link, (err,res,data) ->
 				article.created_by  = created_by 
 
 			json.articles.push(article) 
-
-		fs.writeFile 'constitution.json', JSON.stringify(json, null, 4), (err) ->
+		
+		fs.writeFile __dirname + '/../constitution.json', JSON.stringify(json, null, 4), (err) ->
 			console.log 'File successfully written - Check your project directory for the constitution.json file'
 	else
 		console.log "There was a problem ..."

@@ -41,9 +41,11 @@ request constitution_link, (err,res,data) ->
 			
 			# For the 2 first articles with no section_title
 			if !$elem.parent().is("div")
-				article.section = $elem.parent().find(".titreSection").text().clean()
-				
-			article.text = $elem.find("p").text().clean()
+				if $elem.parent().find(".titreSection").text().clean()
+					article.section = $elem.parent().find(".titreSection").text().clean()
+			
+			if $elem.find("p").text().clean()
+				article.text = $elem.find("p").text().clean()
 			
 			# Split paragraphs - todo
 			#txt 			= $elem.find("p").text().match(/(.*\n)/g)

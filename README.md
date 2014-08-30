@@ -23,7 +23,7 @@ Libs :
 | title           | Article name                              | String        | Yes        |
 | see_more        | Link to more infos                        | String        | Yes        |
 | section         | Section where the article is              | String        | No         |
-| text            | content of the article                    | String        | Yes        |
+| text            | content of the article                    | String        | No         |
 | modified_by     | Link to the law that modified the article | Array[String] | No         |
 | created_by      | Link to the law that created the article  | Array[String] | No         |
 
@@ -48,6 +48,7 @@ Libs :
 ```
 
 ## Todos
+- [ ] Refactoring
 - [ ] Split contents by paragraphs
 - [ ] Scrap other languages
 - [ ] Do tests
